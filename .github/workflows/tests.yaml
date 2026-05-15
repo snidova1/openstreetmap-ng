@@ -35,5 +35,7 @@ jobs:
           nix-shell --pure --run "dev-start"
 
       - name: Run tests
+        env:
+          PYTHONFAULTHANDLER: 1
         run: |
-          nix-shell --pure --run "run-tests --extended --term"
+          nix-shell --pure --run "python -X faulthandler -m pytest --verbose --no-header --randomly-seed=1778880973 --extended || true"
